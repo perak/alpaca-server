@@ -4,9 +4,9 @@ Modified [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp) to run as http
 
 Run alpaca LLM on your local machine as HTTP server which you can connect with your web application (or use provided minimal HTTP UI).
 
-Compiled and tested on MacBook Pro with M1 Pro CPU (10 core = 8 performance + 2 efficiency) and 16GB RAM. When using 8 threads performance is ~40ms per token.
+Compiled and tested on MacBook Pro with M1 Pro CPU (10 core = 8 performance + 2 efficiency) and 16GB RAM. When using 8 threads performance is ~40ms per token. Should compile on Linux and Windows too.
 
-# Prerequisites
+# Prerequisites (Mac)
 
 You need C and C++ compiler, for example `clang` and `clang++` which is shipped with XCode and installed with:
 
@@ -20,19 +20,24 @@ CMake:
 brew install cmake
 ```
 
+# Prerequisites (Linux and Windows)
+
+You need C and C++ compiler and CMake. If someone compiled on these platforms, please make a pull request with this section of README updated. Thanks :)
+
+
 # Download model
 
 1. Make `models/` subdirectory here
 2. Download [ggml-alpaca-7b-q4.bin](https://huggingface.co/Sosaka/Alpaca-native-4bit-ggml/blob/main/ggml-alpaca-7b-q4.bin) model and put it into `models/` directory
 
-# Compile program
+# Compile
 
 1. Create `build/` directory, `cd` into it and run `cmake ..` then `make`
 2. Executable will be written into `bin/` directory. `cd` into it and run server with `./alpaca-server --port 8080 --threads 8 --temp 0.1` (use number of threads optimal for your CPU. In my case it is 8 which is number of M1 Pro performance cores. It works slower with 10 threads because then it uses 2 slower efficiency cores)
 3. Navigate your browser to [http://localhost:8080](http://localhost:8080) and enjoy.
 
  
-# Using server
+# Using the server
 
 Server has two endpoints:
 
